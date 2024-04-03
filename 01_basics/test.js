@@ -34,7 +34,7 @@
 // console.log(typeof(null)); // it will show object. it's a bug in java script
 
 
-let score = 21;
+// let score = 21;
 // let score = true; // gives 1
 // let score = false; // gives 0
 // let score = "arfe2121";   // typeof(Number(score)) would be number also! cause it provides NaN. not a number.
@@ -172,3 +172,45 @@ let score = 21;
 // const words="arnab-saha-is-best";
 // console.log(words.split("-"));
 
+// const score =400;
+// console.log(score);
+// console.log(score.toString().length);
+// console.log(score.toFixed(2)); // 2 values after decimel.
+// console.log(Number.MAX_VALUE);
+// console.log(Number.MAX_SAFE_INTEGER);
+// console.log(Number.MIN_SAFE_INTEGER);
+// console.log(Number.MIN_VALUE);
+
+
+// // ++++++++++++++++++++++++ Maths +++++++++++++++++++
+// console.log(Math.abs(-4)); //4
+// console.log(Math.round(4.5)); //5
+// console.log(Math.ceil(4.2)); //5
+// console.log(Math.floor(4.2)); //4
+// console.log(Math.sqrt(4)); //2
+// console.log(Math.random()); // 0-1
+// console.log(Math.floor(Math.random()*10)+1);
+
+// const min =10;
+// const max =20;
+
+// console.log((Math.floor(Math.random()*(max-min+1)+min))); // formula to get random values from min to max
+
+
+// let MyDate = new Date();
+// // let MyDate = new Date(2023,0,21);
+// // let MyDate = new Date("2023-01-14");
+// console.log(MyDate.toDateString());
+// console.log(MyDate.toLocaleString());
+// console.log(MyDate.getDate());
+// console.log(MyDate.getMonth()+1); // months starts with zero
+// console.log(MyDate.getFullYear());
+// console.log(MyDate.toLocaleString("default",{
+//     weekday:"long",
+//     day:"numeric"
+// }));
+
+
+// let myTimeStamp =Date.now();
+// console.log(myTimeStamp);
+// console.log(MyDate.getTime());
