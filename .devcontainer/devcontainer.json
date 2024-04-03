@@ -3,7 +3,7 @@
 {
 	"name": "Node.js",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye"
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -19,4 +19,57 @@
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"vscode-icons-team.vscode-icons",
+				"wayou.vscode-todo-highlight"
+			],
+			"settings": {
+    			"editor.mouseWheelZoom": true,
+				"editor.wordWrap": "on",
+				"workbench.colorCustomizations": {
+					"editor.background": "#1a1a1a",
+					"activityBar.background": "#1a1a1a",
+					"activityBar.foreground": "#888888",
+					"activityBarBadge.background": "#7d7d7d",
+					"sideBar.background": "#1f1f1f",
+					"sideBar.foreground": "#888888",
+					"sideBarSectionHeader.background": "#202020",
+					"sideBarSectionHeader.foreground": "#888888",
+					"editorGroupHeader.tabsBackground": "#1f1f1f",
+					"editorGroup.border": "#444444",
+					"tab.border": "#111",
+					"tab.activeBorder": "#888",
+					"tab.inactiveBackground": "#1f1f1f",
+					"titleBar.activeBackground": "#1a1a1a",
+					"titleBar.activeForeground": "#888888",
+					"statusBar.background": "#1f1f1f",
+					"statusBar.foreground": "#888888",
+					"statusBar.noFolderBackground": "#1f1f1f",
+					"statusBar.noFolderForeground": "#888888",
+					"statusBarItem.hoverBackground": "#333333",
+					"pickerGroup.foreground": "#888888",
+					"terminal.background": "#1a1a1a",
+					"terminal.foreground": "#E95678E6",
+					"terminalCursor.foreground": "#888888",
+					"gitDecoration.modifiedResourceForeground": "#4ec9b0",
+					"gitDecoration.untrackedResourceForeground": "#4ec9b0",
+					"breadcrumb.foreground": "#888888",
+					"list.hoverForeground": "#888888",
+					"list.activeSelectionForeground": "#888888",
+					"list.inactiveSelectionForeground": "#888888",
+					"notificationCenterHeader.foreground": "#888888",
+					"extensionButton.prominentForeground": "#888888",
+					"pickerGroup.border": "#444444",
+				
+				},
+				"window.zoomLevel": 1
+			}
+			
+		}
+		
+	 }
+
 }
