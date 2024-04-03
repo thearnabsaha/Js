@@ -123,21 +123,52 @@ let score = 21;
 
 // console.log(bigNumber);
 
-// stack-memory (Primitive) // we get a value in this case
-//  Heap-memory (Non-Primitive); // we get a reference in this case
+// // stack-memory (Primitive) // we get a value in this case
+// //  Heap-memory (Non-Primitive); // we get a reference in this case
 
-//pass by value
-let myName = "arnab saha";
-let username =myName;
-console.log(myName);
-username="thearnabsaha";
-console.log(username);
-console.log(myName); // value is different
+// //pass by value
+// let myName = "arnab saha";
+// let username =myName;
+// console.log(myName);
+// username="thearnabsaha";
+// console.log(username);
+// console.log(myName); // value is different
 
-// pass by reference 
-let arr1 = ["arnab","suborno","arijit"];
-let arr2=arr1;
-console.log(arr2);
-arr2.push("pratysha"); // it changes to original code.
-console.log(arr1);
-console.log(arr2); 
+// // pass by reference 
+// let arr1 = ["arnab","suborno","arijit"];
+// let arr2=arr1;
+// console.log(arr2);
+// arr2.push("pratysha"); // it changes to original code.
+// console.log(arr1);
+// console.log(arr2); 
+
+// let name="arnab saha";
+// let age=22;
+// console.log(`hello my name is ${name} and my age is ${age}`);
+// console.log(name[1]);
+// console.log(name.length);
+// // console.log(name.toUppercase()); //we can't use this things here! so we use new property.
+// // console.log(name.toLowerCase());
+
+// let newName = new String("Arnab Saha");
+// console.log(newName.toUpperCase());
+// console.log(newName.toLowerCase());
+// console.log(newName.charAt(2));
+// console.log(newName.indexOf("b"));
+
+// const subName = newName.substring(0,4);
+// console.log(subName);
+
+// const anotherSubName = newName.slice(-9,2);
+// console.log(anotherSubName);
+
+// const newStringOne ="        arnab          ";
+// console.log(newStringOne.trim());
+
+// const url ="https://arnab%20saha.com";
+// console.log(url.replace("%20",""));
+// console.log(url.includes("arn"));
+
+// const words="arnab-saha-is-best";
+// console.log(words.split("-"));
+
