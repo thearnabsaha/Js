@@ -214,3 +214,26 @@
 // let myTimeStamp =Date.now();
 // console.log(myTimeStamp);
 // console.log(MyDate.getTime());
+
+
+// const myArray = [1,2,4,true,"arnab",[1,2,43]];
+// const myArray1 = new Array(1,2,4,4,5);
+// // shallow copy = have only one reference points // all array's are shallow copy.
+// console.log(myArray[2]);
+
+// // methods of array
+// myArray.push(6); //add element at last
+// myArray.pop(); // remove the last element
+// myArray.unshift(0); //add element at the first
+// myArray.shift(); // remove element from first.
+// console.log(myArray.includes(9)); // show is the value present there or not.
+// console.log(myArray.indexOf(9)); // show the index or -1
+// const newArr = myArray.join(); // makes all the values in string
+
+// // slice and splice 
+// const myn1 = myArray.slice(1,3); // it doesn't manipulate the original Array.
+// console.log(myn1);
+
+// const myn2 = myArray.splice(1,3); // it manipulates original array and removes the subArray.
+// console.log(myn1);
+// console.log(myn2);
