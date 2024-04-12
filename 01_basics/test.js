@@ -237,3 +237,117 @@
 // const myn2 = myArray.splice(1,3); // it manipulates original array and removes the subArray.
 // console.log(myn1);
 // console.log(myn2);
+
+// const marvel_heros = ["thor","spiderman","ironman"];
+// const dc_heros = ["batman","superman","flash"]
+
+// const allHeros= marvel_heros.concat(dc_heros); // makes a new array. with all elements.
+// console.log(allHeros);
+// marvel_heros.push(dc_heros); // add an array as 4th element
+// marvel_heros.push(...dc_heros); //add the element of array in previous array. // spread oparetor. 
+// console.log(marvel_heros);
+
+
+// const newArr1 =[1,2,3,[2,4,5,6],[2,[2,5]]];
+// console.log(newArr1.flat(1)); // flattens the array in the array // with depth.
+// console.log(newArr1.flat(Infinity)); // here the depth is infinity
+
+// console.log(Array.isArray("arnab")); // it will check is the element passed is an array or not.
+// console.log(Array.from("arnab")); // it will make a array out of this elements.
+// console.log(Array.from({name:"arnab"})); // it will give a empty array cause it can't make array from objects.
+
+// let score1 =100;
+// let score2 =200;
+// let score3 =300;
+// let score4 =400;
+
+// console.log(Array.of(score1,score2,score3,score4)); // it will make a array out of variables.
+
+// const mySym =Symbol("arnab")
+// const jsUser={
+//     "full name":"arnab",
+//     age:22,
+//     [mySym]:"arnab1",
+//     location:"kolkata",
+//     isLoggedIn:false,
+//     daysActive:["monday","sunday"]
+// };
+// console.log(jsUser.age); //to get normal values
+// console.log(jsUser["full name"]); // to get values from json like structure.
+// console.log(jsUser[mySym]); // this is how you print the symbol
+
+// jsUser.location ="kaliachak";
+// // Object.freeze(jsUser); // you can't change the object after this.
+// // jsUser.location ="malda";
+// console.log(jsUser);
+
+// jsUser.greetings = function(){
+//     console.log(` Hello ${this["full name"]}`);
+// } //this is how you can add functions in your objects
+// console.log(jsUser.greetings());
+
+// const user ={}; // non-singleton object.
+// const user2 = new Object(); // singleton object.
+
+// const pokemon ={
+//     name:"keldeo",
+//     types:{
+//         primaryType:{
+//             fire: true,
+//             water:false
+//         }
+//     }
+// };
+// console.log(pokemon.types.primaryType.fire);   //object nesting
+
+// const obj1 ={
+//     name:"arnab",
+//     rollnumer:25
+// }
+// const obj2 ={
+//     work:"pwc",
+//     role:"consultant"
+// }
+// const obj3 ={
+//     age:23,
+//     sex:"male"
+// }
+// const obj = {...obj1,...obj2,...obj3} //used spread operator to make it a object with all the values. // better one
+// const objx = Object.assign({},obj1,obj2,obj3) //used assign to make it a object with all the values.
+// console.log(objx); 
+
+// console.log(Object.keys(obj));
+// console.log(Object.values(obj));
+// console.log(Object.entries(obj));
+
+// const course ={
+//     name:"react",
+//     price:"999",
+//     teacher:"arnab saha"
+// };
+// const {teacher}=course; // this is called object destructure. it's just a syntactical suger for writing code in a gpood looking way!
+// const {teacher: t}=course; // here you have given a alias name for keys ie teacher.
+// console.log(teacher);
+// console.log(t);
+
+// {                           //this is JSON
+//     "name":"arnab saha",
+//     "favPokemon":"victini"
+// }
+
+// [{                          //this is also a JSON. but it is a array of JSON.
+//     "name":"arnab saha",
+//     favPokemon:"victini"
+// },{
+//     "name":"pratyusha",
+//     "favPokemon":"pikachu"
+// }
+// ]
+
+// //go to JSON formatter website to understand about any apis
+
+function add(a,b) {
+    console.log(a+b);
+}
+add // refernce of a function
+add(1,2)
