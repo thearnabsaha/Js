@@ -346,8 +346,213 @@
 
 // //go to JSON formatter website to understand about any apis
 
-function add(a,b) {
-    console.log(a+b);
-}
-add // refernce of a function
-add(1,2)
+// function add(a,b) { //parameters
+//     console.log(a+b);
+// }
+// add // refernce of a function
+// add(1,2) //arguments
+
+// function mult(a,b){
+//     return a+b;  //if we return the next code will not work
+// }
+// const result=mult(2,3) // it will save the returned value
+// console.log(result);
+
+// function addinf(...num1){
+//     return num1
+// }
+
+// console.log(addinf(1000,12000,2000)); //it will give an array
+
+// const person1={
+//     name:"anrab saha",
+//     age:22
+// }
+// function handleObject(anyObject){
+//     console.log(`my name is ${anyObject.name} and age is ${anyObject.age}`);
+// }
+// handleObject(person1)
+
+// addone(2) // you can run your function before initialization this is called hoisting
+// function addone(num){
+//     return num+1
+// }
+// addTwo(2)  // you can't run a function before initialization if the function is a function expression
+// const addTwo = function (num){          //this is called function expressions here you can save functions in your variables
+//     return num+2                        
+// }
+
+// const add1 = function (){
+//     console.log(this); //here you will get undefind
+// }
+// const add2 = ()=>{
+//     console.log(this); //here it's a empty value
+// }
+// function add3(){
+//     console.log(this);  //here you will get undefind
+// }
+// add1()
+// add2()
+// add3()
+
+// const add4 =(a,b)=> a+b; //implicit return... here you don't have to type return keyword
+// const add5 =(a,b)=> (a+b); //implicit return 2... here you can wrap the return things in ()
+// const add6 =(a,b)=> ({age:a+b}); //implicit return 3... to return a object you have to put everything in ()
+
+// console.log(add4(3,4))
+// console.log(add5(3,4))
+// console.log(add6(3,4))
+
+// (function hi(){console.log("hi arnab")})(); //IIFE --> this function invoked immidiately... also it prevents from global scope pollution //this is also called named IIFE
+// (()=>{console.log("hi arnab")})(); // this is Unnamed IIFE
+// ((name)=>{console.log(`hi ${name}`)})("arnab"); // parameter and arguments in an IIFE
+
+// //we can't run two iife with out ";" at the end. put ";" at the end to make them work.
+// (()=>{console.log("hi")})()
+// (()=>{console.log("hi")})()
+
+// // for loop
+// for(let i=0;i<4;i++){
+//     console.log(`outer loop ${i}`);
+// }
+// // nested for loop 
+// for(let i=0;i<5;i++){
+//     console.log(`outer loop ${i}`);
+//     for(let j=0; j<5;j++){
+//         console.log(`inner loop ${j} and outer loop ${i}`);
+//     }
+// }
+// // break -> it terminates the loop
+// for(let i=0; i<5;i++){
+//     if(i==3){
+//         break;
+//     }
+//     console.log(i);
+// }
+// // continue -> it terminates only the checked value
+// for(let i=0; i<5;i++){
+//     if(i==3){
+//         continue;
+//     }
+//     console.log(i);
+// }
+// // for-of loops
+// const arr=[1,2,4,4,55];
+// for (const i of arr) {
+//     console.log(i);
+// }
+// const obj={
+//     game1:"POP",
+//     game2:"NFS"
+// }
+// for (const i of obj) {  //won't work as objects areb't iterable
+//     console.log(i);
+// }
+// // map
+// const map1 = new Map() //map data structure holds only unique values
+// map1.set("game1","NFS")
+// map1.set("game2","POP")
+// console.log(map1);
+// for (const [i,j] of map1) {         // you need to put [] and a pair to iterate the map.
+//     console.log(`${i}->${j}`);
+// }
+// //for-in loops
+// const obj={
+//     game1:"POP",
+//     game2:"NFS"
+// }
+// for (const key in obj) {
+//     console.log(`${key} : ${obj[key]}`);    //this is how you run a loop on a object
+// }
+
+// const arr=["arnab","suborno","ankush","arindam","kuldip"];
+// arr.forEach((item)=>{
+//     console.log(item);
+// })
+// arr.forEach(function (item){
+//     console.log(item);
+// })
+// arr.forEach((item,index,array)=>{
+//     console.log(`${index}:${item} of array ${array}`);
+// })
+// const arr1=[
+//     {
+//         name:'arnab',
+//         age:22
+//     },
+//     {
+//         name:"kuldip",
+//         age:21
+//     },
+//     {
+//         name:"ankush",
+//         age:20
+//     }
+// ]
+// arr1.forEach((item)=>{
+//     console.log(`${item.name} : ${item.age}`); //that's how you fetch the values from objects which is inside an array.
+// })
+
+
+// //filter method
+// const arr =[1,2,3,4,5,6,7,8,9,10]
+// let arr1=arr.filter((i)=> i>4)
+// let arr2=arr.filter((i)=>{
+//     return i>8.  // use return keyword if you use {}
+// })
+// console.log(arr1);
+// console.log(arr2);
+
+// const books =[
+//     {title:"book1",genre:"history",publish:1982},
+//     {title:"book2",genre:"friction",publish:2000},
+//     {title:"book3",genre:"non-friction",publish:2001},
+//     {title:"book4",genre:"history",publish:2002},
+//     {title:"book5",genre:"friction",publish:2007},
+//     {title:"book6",genre:"history",publish:2005},
+//     {title:"book7",genre:"non-friction",publish:2005},
+//     {title:"book8",genre:"history",publish:2003},
+//     {title:"book9",genre:"friction",publish:2001},
+//     {title:"book10",genre:"non-friction",publish:1999},
+//     {title:"book11",genre:"history",publish:1989},
+// ]
+// let mybooks=books.filter((i)=>i.publish>2002);
+// mybooks=books.filter((i)=>{return i.genre==="history"})
+// mybooks=books.filter((i)=>{return i.genre==="history" && i.publish>2002})
+// console.log(mybooks);
+
+// // map method
+// const arr=[1,2,3,4,5,6,7,8]
+// let newarr=arr.map((i)=>i+10);
+// console.log(newarr);
+
+// let newarr1=arr.map((i)=>i*10) //this is method chaining we can add another method on a method
+//    .map((i)=>i-5)
+//    .filter((i)=>i>40)
+// console.log(newarr1);
+
+// // reduce method
+// const arr=[1,2,3]
+// let newarr=arr.reduce((acc,curr)=>acc+curr,0);
+// console.log(newarr);
+
+// const obj=[
+//     {
+//         name:"js course",
+//         price:299
+//     },
+//     {
+//         name:"react course",
+//         price:1299
+//     },
+//     {
+//         name:"flutter course",
+//         price:2299
+//     },
+//     {
+//         name:"web dev course",
+//         price:5299
+//     },
+// ]
+// let totalprice= obj.reduce((acc,curr)=>{return acc+curr.price},0);
+// console.log(totalprice);
