@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Learning</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading" id="heading">I am Heading</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ab ipsa esse alias enim dolor non animi maxime impedit accusamus.</p>
+        <input type="password" name="" id="">
+        <ul>
+            <li class="myli">one</li>
+            <li class="myli">two</li>
+            <li class="myli">three</li>
+        </ul>
+    </div>
+    <div class="days">
+        <div class="day">sunday</div>
+        <div class="day">monday</div>
+        <div class="day">tuesday</div>
+        <div class="day">wednesday</div>
+        <div class="day">thursday</div>
+        <div class="day">friday</div>
+        <div class="day">saturday</div>
+    </div>
+    <div class="dev">hi</div>
+</body>
+<script>
+    const days=document.querySelector(".days")
+    console.log(days);
+    console.log(days.children); //to select children
+    console.log(days.children[1].innerHTML); 
+    for(let i=0;i<days.children.length;i++){
+        console.log(days.children[i].innerHTML); //to select each children
+    }
+    console.log(days.firstElementChild); //to select to child
+    console.log(days.lastElementChild); //to select last child
+    console.log(days.parentElement); // to select parent 
+    console.log(days.previousElementSibling); //previous sibling element
+    console.log(days.nextElementSibling); // next sibling element
+    console.log("NODES : ",days.childNodes); //to see childnodes
+
+    const div=document.createElement("div") // to make a div tag
+    div.className="main" // give classname
+    div.id="POKEMON" // give id
+    div.setAttribute("title","generated title") // set any attribute
+    div.style.backgroundColor="green" //style
+    div.style.padding="12px" 
+    div.innerText="arnab saha" //to set inner text (don't recommended)
+    const addText = document.createTextNode("Arnab is best") // create a text element
+    console.log(addText);
+    console.log(div);
+    div.appendChild(addText) //append text to the dom
+    document.body.appendChild(div) //append div to the dom
+
+    // function to create dom
+    function addChild(element,classname,color,padding,text) {
+        let div= document.createElement(`${element}`)
+        div.className=`${classname}`
+        div.style.backgroundColor=(`${color}`)
+        div.style.padding=(`${padding}`)
+        let texts = document.createTextNode(`${text}`)
+        div.appendChild(texts)
+        document.body.appendChild(div)
+    }
+    addChild("h1","myClass","red","50px","I am the best person in the world")
+    addChild("h3","myClass2","orange","5px","I am the worst person in the world")
+</script>
+</html>
