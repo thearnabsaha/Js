@@ -1,160 +1,146 @@
-import express from 'express';
-const app = express();
-import dotenv from 'dotenv';
-dotenv.config();
-const port = process.env.PORT || 3001;
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import morgan from 'morgan';
-const morganFormat = ':method :url :status :response-time ms';
-import { promises as fs } from 'fs';
-import shortid from 'shortid';
-import path from 'path';
+# Player Management API
 
-/**
- * Middleware configuration
- */
-app.use(morgan(morganFormat, 'dev'));
-app.use(cors({
-  origin: process.env.CORS_ORIGIN,
-  credentials: true,
-}));
-app.use(express.json({ limit: '16kb' }));
-app.use(express.urlencoded({ extended: true, limit: '16kb' }));
-app.use(express.static('public'));
-app.use(cookieParser());
+This is a simple RESTful API for managing player information. It allows you to perform CRUD operations (Create, Read, Update, Delete) on a player dataset stored in a `data.json` file.
 
-/**
- * Health check route
- * @route GET /healthcheck
- * @returns {string} 200 - Server health status
- */
-app.get('/healthcheck', (req, res) => {
-    res.status(200).send('this is healthcheck route');
-});
+## Features
 
-const dataLocation = path.resolve("src", "./data.json");
+- **Health Check**: Check server status.
+- **Get All Players**: Retrieve a list of all players.
+- **Get Player by ID**: Retrieve player details by their unique ID.
+- **Add New Player**: Add a new player to the dataset.
+- **Update Player Details**: Update specific details of an existing player.
+- **Replace or Add Player**: Replace an existing player or add a new player if not found.
+- **Delete Player**: Remove a player from the dataset.
 
-/**
- * Get all players
- * @route GET /
- * @returns {Object[]} 200 - Array of player objects
- */
-app.get('/', async (req, res) => {
-    const data = await fs.readFile(dataLocation);
-    const players = JSON.parse(data);
-    res.status(200).send(players);
-});
+## Prerequisites
 
-/**
- * Get a player by ID
- * @route GET /:id
- * @param {string} id - Player ID
- * @returns {Object} 200 - Player object
- * @returns {string} 404 - Player not found
- */
-app.get('/:id', async (req, res) => {
-    const data = await fs.readFile(dataLocation);
-    const players = JSON.parse(data);
-    const player = players.find((e) => e.id === req.params.id);
-    if (!player) {
-      res.status(404).send("doesn't exist");
-    } else {
-      res.status(200).send(player);
+- Node.js (v14 or higher)
+- npm (Node Package Manager)
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd <project-directory>
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Create a `.env` file in the root directory and set the following variables:
+   ```env
+   PORT=3001
+   CORS_ORIGIN=http://localhost:3000
+   ```
+
+5. Create a `src/data.json` file and initialize it with an empty array:
+   ```json
+   []
+   ```
+
+## Usage
+
+### Start the server
+
+```bash
+npm start
+```
+
+The server will start on the port specified in the `.env` file (default: 3001).
+
+### Endpoints
+
+#### Health Check
+- **GET** `/healthcheck`
+- Response:
+  ```text
+  this is healthcheck route
+  ```
+
+#### Get All Players
+- **GET** `/`
+- Response:
+  ```json
+  [
+    {
+      "id": "player1",
+      "name": "John Doe",
+      "age": 25,
+      "email": "johndoe@example.com"
     }
-});
+  ]
+  ```
 
-/**
- * Add a new player
- * @route POST /
- * @bodyparam {string} name - Player name
- * @bodyparam {number} age - Player age
- * @bodyparam {string} email - Player email
- * @returns {Object[]} 201 - Updated array of players
- */
-app.post('/', async (req, res) => {
-  const data = await fs.readFile(dataLocation);
-  const players = JSON.parse(data);
-  const newPlayer = { ...req.body, id: shortid.generate() };
-  players.push(newPlayer);
-  await fs.writeFile(dataLocation, JSON.stringify(players));
-  res.status(201).send(players);
-});
+#### Get Player by ID
+- **GET** `/:id`
+- Response:
+  - Success: Returns the player object.
+  - Error: `404 Player doesn't exist`.
 
-/**
- * Delete a player
- * @route DELETE /:id
- * @param {string} id - Player ID
- * @returns {Object[]} 200 - Updated array of players
- * @returns {string} 404 - Player not found
- */
-app.delete('/:id', async (req, res) => {
-  const data = await fs.readFile(dataLocation);
-  const players = JSON.parse(data);
-  const playerDoesExist = players.find((e) => e.id === req.params.id);
-  if (!playerDoesExist) {
-    res.status(404).send("player doesn't exist");
-  } else {
-    const newPlayers = players.filter((e) => e.id !== req.params.id);
-    await fs.writeFile(dataLocation, JSON.stringify(newPlayers));
-    res.status(200).send(newPlayers);
+#### Add New Player
+- **POST** `/`
+- Body:
+  ```json
+  {
+    "name": "Jane Doe",
+    "age": 22,
+    "email": "janedoe@example.com"
   }
-});
+  ```
+- Response: Updated list of players.
 
-/**
- * Update player fields
- * @route PATCH /:id
- * @param {string} id - Player ID
- * @bodyparam {string} [name] - Updated player name
- * @bodyparam {number} [age] - Updated player age
- * @bodyparam {string} [email] - Updated player email
- * @returns {Object[]} 200 - Updated array of players
- * @returns {string} 404 - Player not found
- */
-app.patch('/:id', async (req, res) => {
-  const data = await fs.readFile(dataLocation);
-  const players = JSON.parse(data);
-  const player = players.find((e) => e.id === req.params.id);
-  if (!player) {
-    res.status(404).send("player doesn't exist");
-  } else {
-    player.name = req.body.name || player.name;
-    player.age = req.body.age || player.age;
-    player.email = req.body.email || player.email;
-    await fs.writeFile(dataLocation, JSON.stringify(players));
-    res.status(200).send(players);
+#### Update Player Fields
+- **PATCH** `/:id`
+- Body:
+  ```json
+  {
+    "age": 23
   }
-});
+  ```
+- Response: Updated list of players.
 
-/**
- * Replace or add a player
- * @route PUT /:id
- * @param {string} id - Player ID
- * @bodyparam {string} name - Player name
- * @bodyparam {number} age - Player age
- * @bodyparam {string} email - Player email
- * @returns {Object[]} 200 - Updated array of players (if player existed)
- * @returns {Object[]} 201 - Updated array of players (if new player was created)
- */
-app.put('/:id', async (req, res) => {
-  const data = await fs.readFile(dataLocation);
-  const players = JSON.parse(data);
-  const player = players.find((e) => e.id === req.params.id);
-  if (!player) {
-    const newPlayer = { ...req.body, id: req.params.id };
-    players.push(newPlayer);
-    await fs.writeFile(dataLocation, JSON.stringify(players));
-    res.status(201).send(players);
-  } else {
-    player.name = req.body.name || player.name;
-    player.age = req.body.age || player.age;
-    player.email = req.body.email || player.email;
-    await fs.writeFile(dataLocation, JSON.stringify(players));
-    res.status(200).send(players);
+#### Replace or Add Player
+- **PUT** `/:id`
+- Body:
+  ```json
+  {
+    "name": "Jane Doe",
+    "age": 22,
+    "email": "janedoe@example.com"
   }
-});
+  ```
+- Response:
+  - `201`: Player added.
+  - `200`: Player updated.
 
-/**
- * Start the server
- */
-app.listen(port, () => console.log('> Server is up and running on port: ' + port));
+#### Delete Player
+- **DELETE** `/:id`
+- Response:
+  - Success: Updated list of players.
+  - Error: `404 Player doesn't exist`.
+
+## Middleware
+
+- **Morgan**: Logs HTTP requests.
+- **CORS**: Enables Cross-Origin Resource Sharing.
+- **Express JSON**: Parses JSON payloads.
+- **Cookie Parser**: Parses cookies.
+
+## Built With
+
+- [Express.js](https://expressjs.com/) - Web framework for Node.js
+- [Morgan](https://github.com/expressjs/morgan) - HTTP request logger
+- [dotenv](https://github.com/motdotla/dotenv) - Loads environment variables
+- [shortid](https://github.com/dylang/shortid) - Generates unique IDs
+- [CORS](https://github.com/expressjs/cors) - Middleware for enabling CORS
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
